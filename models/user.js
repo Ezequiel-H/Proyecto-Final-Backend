@@ -2,7 +2,7 @@ import { schema as Schema, mongoose } from "../db.js";
 
 const schema = new Schema(
   {
-    name: String,
+    name: [String],
     birthDate: Date,
   },
   { timestamps: true }
