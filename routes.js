@@ -1,3 +1,4 @@
+import { createField } from "./controllers/field.js";
 import { createUser, deleteUser, findUsers } from "./controllers/user.js";
 
 export default (app) => {
@@ -8,4 +9,6 @@ export default (app) => {
   app.post("/user", createUser);
   app.get("/user", findUsers);
   app.delete("/user/:id", deleteUser);
+
+  app.post("/field", createField);
 };
