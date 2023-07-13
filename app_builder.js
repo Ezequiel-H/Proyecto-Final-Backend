@@ -6,7 +6,7 @@ import initRoutes from "./routes.js";
 
 const app = express();
 
-app.use(bodyParser.json({ limit: "50mb" }));
+app.use(bodyParser.json());
 
 initRoutes(app);
 

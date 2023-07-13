@@ -5,6 +5,9 @@ const schema = new Schema(
     name: String,
     birthDate: Date,
     fields: [{ type: mongoose.Schema.Types.ObjectId, ref: "Field" }],
+    email: String,
+    password: String,
+    isDeleted: { type: Boolean, default: false },
   },
   { timestamps: true }
 );

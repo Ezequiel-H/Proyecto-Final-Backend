@@ -1,18 +1,21 @@
 import Field from "../models/field.js";
-import User from "../models/user.js";
 
 export const createField = async (req, res) => {
   try {
-    const fieldOwner = await User.find({ _id: req.user.id });
-    if (!!fieldOwner) {
-      const newField = await Field.create(req.body);
-      fieldOwner.fields = [...fieldOwner.fields, newField._id];
-      await fieldOwner.save();
-      res.json({ field: newField });
-    } else {
-      throw new Error("User not found");
-    }
-  } catch (e) {
-    response.status(400).json(e);
+    const newField = await Field.create(req.body);
+    req.user.fields = [...req.user.fields, newField._id];
+    await req.user.save();
+    endRequest({
+      response: { field: newField },
+      code: 201,
+      res,
+    });
+  } catch (err) {
+    catchRequest({
+      err,
+      res,
+      message: "Error while creating field",
+      internalCode: "1001",
+    });
   }
 };
