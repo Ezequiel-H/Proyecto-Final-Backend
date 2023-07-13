@@ -1,3 +1,7 @@
+// https://www.usna.edu/Users/oceano/pguth/md_help/html/approx_equivalents.htm
+// 111 metros
+export const PLOT_SIZE = 0.001;
+
 export const DIAGNOSTICS_KEYS = {
   OVERHYDRATION: "overhydration",
   DEHYDRATION: "dehydration",
@@ -17,4 +21,5 @@ export const CROP_TYPES_KEYS = {
   WHEAT: "wheat",
   SUNFLOWER: "sunflower",
   CORN: "corn",
+  NONE: "none",
 };

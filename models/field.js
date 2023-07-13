@@ -9,8 +9,6 @@ const schema = new Schema(
     plots: [plotSchema],
     height: Number,
     width: Number,
-    // los usuarios pueden agregarse a su cuenta un campo poniendo este codigo
-    shareCode: String,
   },
   { timestamps: true }
 );

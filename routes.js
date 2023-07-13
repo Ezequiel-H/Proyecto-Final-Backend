@@ -6,10 +6,11 @@ export default (app) => {
   app.get("/health", (_, res) => {
     res.status(200).send("Healthy!");
   });
-
+  // USER
   app.post("/user", createUser);
   app.delete("/user/:id", deleteUser);
-  app.post("/sign_in", signIn);
+  app.get("/sign_in", signIn);
 
+  // FIELD
   app.post("/field", [authenticate], createField);
 };

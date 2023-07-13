@@ -4,7 +4,7 @@ import { catchRequest, endRequest } from "../helpers/request.js";
 import { getUserByCriteria, getUserWithPassword } from "../interactors/user.js";
 import { changeFieldAndSave } from "../helpers/entities.js";
 import { entityAlreadyExists, unauthorizedUser } from "../errors.js";
-import { bodyToUserMapper } from "../mapper/user.js";
+import { bodyToUserMapper, removePassword } from "../mapper/user.js";
 
 export const createUser = async (req, res) => {
   const user = new User(bodyToUserMapper(req.body));
@@ -51,7 +51,7 @@ export const signIn = async (req, res) => {
     res.set("authorization", user._id);
 
     return endRequest({
-      response: { user },
+      response: { user: removePassword(user._doc) },
       code: 200,
       res,
     });

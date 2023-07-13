@@ -2,8 +2,9 @@ import { catchRequest } from "../helpers/request.js";
 import { getUserById } from "../interactors/user.js";
 import { unauthorizedUser } from "../errors.js";
 
-export const authenticate = async (req, res, next, decode) => {
+export const authenticate = async (req, res, next) => {
   const authHeader = req.headers[process.env.JWT_HEADER_NAME];
+
   if (!authHeader) {
     return catchRequest({
       err: unauthorizedUser("No token was set", "2000"),

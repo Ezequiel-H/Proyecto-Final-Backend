@@ -4,3 +4,5 @@ export const bodyToUserMapper = ({ name, birthDate, email, password }) => ({
   email,
   password,
 });
+
+export const removePassword = ({ password, ...restObject }) => restObject;
