@@ -1,4 +1,5 @@
 import { createField } from "./controllers/field.js";
+import { getOneSatelite } from "./controllers/satelite.js";
 import { createUser, deleteUser, signIn } from "./controllers/user.js";
 import { authenticate } from "./middlewares/auth.js";
 
@@ -13,4 +14,8 @@ export default (app) => {
 
   // FIELD
   app.post("/field", [authenticate], createField);
+
+  // SATELITE
+  // app.get("/satelite/all", getAllSatelites);
+  app.get("/satelite:id", [authenticate], getOneSatelite);
 };

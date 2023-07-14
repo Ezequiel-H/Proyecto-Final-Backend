@@ -1,5 +1,9 @@
 import { schema as Schema, mongoose } from "../db.js";
-import { DIAGNOSTICS_KEYS, GROWTH_STAGES_KEYS } from "../constants/plots.js";
+import {
+  CROP_TYPES_KEYS,
+  DIAGNOSTICS_KEYS,
+  GROWTH_STAGES_KEYS,
+} from "../constants/plots.js";
 
 export const schema = new Schema(
   {
@@ -14,6 +18,10 @@ export const schema = new Schema(
     growthStage: {
       type: String,
       enum: Object.values(GROWTH_STAGES_KEYS),
+    },
+    crop: {
+      type: String,
+      enum: Object.values(CROP_TYPES_KEYS),
     },
   },
   { timestamps: true }

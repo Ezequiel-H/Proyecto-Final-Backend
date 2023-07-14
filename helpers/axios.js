@@ -1,15 +1,8 @@
 import axios from "axios";
+import querystring from "querystring";
 
 export const get = (url, data) =>
-  axios({
-    method: "get",
-    url: process.env.SATELITE_URL + url,
-    data,
-  });
+  axios.get(process.env.SATELITE_URL + url, data);
 
 export const post = (url, data) =>
-  axios({
-    method: "post",
-    url: process.env.SATELITE_URL + url,
-    data,
-  });
+  axios.post(process.env.SATELITE_URL + url, querystring.stringify(data));

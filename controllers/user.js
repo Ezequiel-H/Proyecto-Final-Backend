@@ -1,7 +1,7 @@
 import User from "../models/user.js";
 
 import { catchRequest, endRequest } from "../helpers/request.js";
-import { getUserByCriteria, getUserWithPassword } from "../interactors/user.js";
+import { getUserWithPassword } from "../interactors/user.js";
 import { changeFieldAndSave } from "../helpers/entities.js";
 import { entityAlreadyExists, unauthorizedUser } from "../errors.js";
 import { bodyToUserMapper, removePassword } from "../mapper/user.js";
