@@ -1,11 +1,9 @@
-import { getFieldById } from "../interactors/field.js";
 import { PLOT_SIZE } from "../constants/plots.js";
 import { post } from "../helpers/axios.js";
 import { generateDiagnostics } from "../ia/diagnostic.js";
 import { changeFieldAndSave } from "../helpers/entities.js";
 
-export const getFromSatelite = async (fieldId) => {
-  const field = await getFieldById(fieldId);
+export const getFromSatelite = async (field) => {
   const mappedPlots = field.plots.map((plot, index) => {
     const row = Math.floor(index / field.width);
     const column = index % field.width;
