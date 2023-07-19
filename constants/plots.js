@@ -9,6 +9,7 @@ export const DIAGNOSTICS_KEYS = {
   GOOD: "good",
   VERY_GOOD: "very-good",
   EXCELENT: "excelent",
+  NONE: "none",
 };
 
 export const GROWTH_STAGES_KEYS = {

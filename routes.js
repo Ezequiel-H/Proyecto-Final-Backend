@@ -1,4 +1,4 @@
-import { createField } from "./controllers/field.js";
+import { createField, getField, updateCrops } from "./controllers/field.js";
 import { getAllSatelites, getOneSatelite } from "./controllers/satelite.js";
 import {
   changePassword,
@@ -22,6 +22,8 @@ export default (app) => {
 
   // FIELD
   app.post("/field", [authenticate], createField);
+  app.post("/field", [authenticate], getField);
+  app.patch("/field/:id", [authenticate], updateCrops);
 
   // SATELITE
   app.get("/satelite/all", getAllSatelites);
