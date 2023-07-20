@@ -73,7 +73,7 @@ export const signIn = async (req, res) => {
 
 export const restorePassword = async (req, res) => {
   try {
-    const email = req.query.email;
+    const email = req.body.email;
 
     const user = await getUserWithPassword(email);
     if (!user) {
@@ -102,7 +102,7 @@ export const restorePassword = async (req, res) => {
 
 export const changePassword = async (req, res) => {
   await User.findOneAndUpdate(
-    { _id: req.user.id },
+    { _id: req.params.id },
     { password: req.body.password }
   );
   endRequest({ code: 204, res });

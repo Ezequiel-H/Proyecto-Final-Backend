@@ -18,7 +18,7 @@ export default (app) => {
   app.delete("/user/:id", deleteUser);
   app.post("/sign_in", signIn);
   app.post("/restore_password", restorePassword);
-  app.delete("change_password/:id", changePassword);
+  app.post("change_password/:id", changePassword);
 
   // FIELD
   app.post("/field", [authenticate], createField);
