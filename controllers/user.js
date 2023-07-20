@@ -3,7 +3,11 @@ import User from "../models/user.js";
 import { catchRequest, endRequest } from "../helpers/request.js";
 import { getUserWithPassword } from "../interactors/user.js";
 import { changeFieldAndSave } from "../helpers/entities.js";
-import { entityAlreadyExists, unauthorizedUser } from "../errors.js";
+import {
+  entityAlreadyExists,
+  entityNotFound,
+  unauthorizedUser,
+} from "../errors.js";
 import { bodyToUserMapper, removePassword } from "../mapper/user.js";
 import { sendEmail } from "../helpers/email.js";
 
@@ -38,10 +42,14 @@ export const deleteUser = async (req, res) => {
 
 export const signIn = async (req, res) => {
   const { email, password } = req.body;
+  console.log(req.body);
 
   const user = await getUserWithPassword(email);
   if (!user) {
-    return createUser(req, res);
+    return catchRequest({
+      err: entityNotFound(email, "user", 1007),
+      res,
+    });
   }
 
   if (user.isDeleted) {

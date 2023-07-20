@@ -16,7 +16,7 @@ export default (app) => {
   // USER
   app.post("/user", createUser);
   app.delete("/user/:id", deleteUser);
-  app.get("/sign_in", signIn);
+  app.post("/sign_in", signIn);
   app.post("/restore_password", restorePassword);
   app.delete("change_password/:id", changePassword);
 
