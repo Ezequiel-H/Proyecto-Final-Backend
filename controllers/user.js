@@ -42,7 +42,6 @@ export const deleteUser = async (req, res) => {
 
 export const signIn = async (req, res) => {
   const { email, password } = req.body;
-  console.log(req.body);
 
   const user = await getUserWithPassword(email);
   if (!user) {
