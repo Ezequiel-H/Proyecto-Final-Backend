@@ -2,6 +2,7 @@ import { PLOT_SIZE } from "../constants/plots.js";
 import { post } from "../helpers/axios.js";
 import { generateDiagnostics } from "../ia/diagnostic.js";
 import { changeFieldAndSave } from "../helpers/entities.js";
+import { GET_ONE_SATELITE } from "../constants/satelite_endpoints.js";
 
 export const getFromSatelite = async (field) => {
   const mappedPlots = field.plots.map((plot, index) => {
@@ -12,7 +13,8 @@ export const getFromSatelite = async (field) => {
   });
 
   // send data to satelite
-  const plotsWithData = await post(GET_ONE_SATELITE, mappedPlots);
+  // const plotsWithData = await post(GET_ONE_SATELITE, mappedPlots);
+  const plotsWithData = mockAddSateliteDAta(mappedPlots);
   const plotsWithDiagnostic = generateDiagnostics(plots, plotsWithData);
   changeFieldAndSave(field, "plots", plotsWithDiagnostic);
 };
