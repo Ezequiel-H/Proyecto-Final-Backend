@@ -1,3 +1,4 @@
+import { getAllConstants } from "./controllers/constants.js";
 import { createField, getField, updateCrops } from "./controllers/field.js";
 import { getAllSatelites, getOneSatelite } from "./controllers/satelite.js";
 import {
@@ -34,4 +35,7 @@ export default (app) => {
     const path = `${process.cwd()}/media/${field.image}`;
     res.sendFile(path);
   });
+
+  // CONSTANTS
+  app.get("/constants", getAllConstants);
 };

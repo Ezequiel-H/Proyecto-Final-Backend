@@ -11,7 +11,6 @@ export const createField = async (req, res) => {
   try {
     const { plots, ...restOfBody } = req.body;
     const { image } = req.files;
-    console.log(req.body);
     if (!image)
       return catchRequest({
         err,
