@@ -1,6 +1,6 @@
 // https://www.usna.edu/Users/oceano/pguth/md_help/html/approx_equivalents.htm
 // 111 metros
-export const PLOT_SIZE = 0.001;
+export const PLOT_SIZE = 0.00001;
 
 export const DIAGNOSTICS_KEYS = {
   OVERHYDRATION: "overhydration",

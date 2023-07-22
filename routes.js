@@ -8,6 +8,7 @@ import {
   signIn,
 } from "./controllers/user.js";
 import { authenticate } from "./middlewares/auth.js";
+import Field from "./models/field.js";
 
 export default (app) => {
   app.get("/health", (_, res) => {
@@ -22,10 +23,15 @@ export default (app) => {
 
   // FIELD
   app.post("/field", [authenticate], createField);
-  app.post("/field", [authenticate], getField);
+  app.get("/field/:id", [authenticate], getField);
   app.patch("/field/:id", [authenticate], updateCrops);
 
   // SATELITE
   app.get("/satelite/all", getAllSatelites);
   app.get("/satelite/:id", [authenticate], getOneSatelite);
+  app.get("/image/:id", async (req, res) => {
+    const field = await Field.findOne(req.params.id);
+    const path = `${process.cwd()}/media/${field.image}`;
+    res.sendFile(path);
+  });
 };

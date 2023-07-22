@@ -9,6 +9,7 @@ const schema = new Schema(
     plots: [plotSchema],
     height: Number,
     width: Number,
+    image: String,
   },
   { timestamps: true }
 );

@@ -10,9 +10,21 @@ import plot from "../models/plot.js";
 export const createField = async (req, res) => {
   try {
     const { plots, ...restOfBody } = req.body;
+    const { image } = req.files;
+    console.log(req.body);
+    if (!image)
+      return catchRequest({
+        err,
+        res,
+        message: "Error whith image",
+        internalCode: "1007",
+      });
+    const imagePath = process.cwd() + "/media/" + image.name;
+    image.mv(imagePath);
     const newField = await Field.create({
       ...restOfBody,
       plots: addDefaultHistoryToPlots(plots),
+      image: image.name,
     });
     req.user.fields = [...req.user.fields, newField._id];
     await req.user.save();
