@@ -5,7 +5,6 @@ import { catchRequest, endRequest } from "../helpers/request.js";
 import { getFieldById } from "../interactors/field.js";
 import { addDefaultHistoryToPlots } from "../mapper/field.js";
 import Field from "../models/field.js";
-import plot from "../models/plot.js";
 
 export const createField = async (req, res) => {
   try {
@@ -22,7 +21,7 @@ export const createField = async (req, res) => {
     image.mv(imagePath);
     const newField = await Field.create({
       ...restOfBody,
-      plots: addDefaultHistoryToPlots(plots),
+      plots: addDefaultHistoryToPlots(JSON.parse(plots)),
       image: image.name,
     });
     req.user.fields = [...req.user.fields, newField._id];

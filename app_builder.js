@@ -6,9 +6,9 @@ import fileUpload from "express-fileupload";
 
 const app = express();
 
+app.use(bodyParser.json());
 app.use(cors());
 app.use(fileUpload());
-app.use(bodyParser.json());
 
 initRoutes(app);
 
