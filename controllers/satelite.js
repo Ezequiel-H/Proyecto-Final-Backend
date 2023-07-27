@@ -35,7 +35,6 @@ export const getAllSatelites = async (req, res) => {
     const fields = await Field.find({});
     Promise.all(fields.map((field) => getFromSatelite(field))).then(
       (values) => {
-        console.log(values);
         endRequest({
           code: 200,
           response: values,

@@ -101,9 +101,13 @@ export const restorePassword = async (req, res) => {
 };
 
 export const changePassword = async (req, res) => {
-  await User.findOneAndUpdate(
+  const user = await User.findOneAndUpdate(
     { _id: req.params.id },
     { password: req.body.password }
   );
-  endRequest({ code: 204, res });
+  endRequest({
+    code: 204,
+    res,
+    response: { user: removePassword(user._doc) },
+  });
 };
