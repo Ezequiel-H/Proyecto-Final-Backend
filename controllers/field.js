@@ -8,7 +8,7 @@ import Field from "../models/field.js";
 
 export const createField = async (req, res) => {
   try {
-    const { plots, ...restOfBody } = req.body;
+    const { plots, coordinates, ...restOfBody } = req.body;
     const { image } = req.files;
     if (!image)
       return catchRequest({
@@ -21,6 +21,7 @@ export const createField = async (req, res) => {
     image.mv(imagePath);
     const newField = await Field.create({
       ...restOfBody,
+      coordinates: JSON.parse(coordinates),
       plots: addDefaultHistoryToPlots(JSON.parse(plots)),
       image: image.name,
     });
