@@ -2,7 +2,7 @@ import { DIAGNOSTICS_KEYS } from "../constants/plots.js";
 
 export const generateDiagnostics = (plots, plotsWithData) =>
   plots.map(({ crop, history }, index) => {
-    const newHistory = history.slice(-1);
+    var newHistory = history.slice(-1);
     const { humidity, frost, color, ndvi } = plotsWithData[index];
     newHistory = { ...newHistory, humidity, frost, color, ndvi };
     const plotDiagnostic = getPlotDiagnostic(newHistory);
