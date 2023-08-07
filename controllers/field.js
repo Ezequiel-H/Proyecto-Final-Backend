@@ -5,6 +5,7 @@ import { catchRequest, endRequest } from "../helpers/request.js";
 import { getFieldById } from "../interactors/field.js";
 import { addDefaultHistoryToPlots } from "../mapper/field.js";
 import Field from "../models/field.js";
+import { verifyUserField } from "../helpers/errors.js";
 
 export const createField = async (req, res) => {
   try {
