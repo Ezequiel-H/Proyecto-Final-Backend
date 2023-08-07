@@ -9,6 +9,7 @@ import {
   signIn,
   updateUser,
 } from "./controllers/user.js";
+import { getFieldById } from "./interactors/field.js";
 import { authenticate } from "./middlewares/auth.js";
 import Field from "./models/field.js";
 
@@ -33,7 +34,7 @@ export default (app) => {
   app.get("/satelite/all", getAllSatelites);
   app.get("/satelite/:id", [authenticate], getOneSatelite);
   app.get("/image/:id", async (req, res) => {
-    const field = await Field.findOne(req.params.id);
+    const field = await getFieldById(req.params.id);
     const path = `${process.cwd()}/media/${field.image}`;
     res.sendFile(path);
   });
