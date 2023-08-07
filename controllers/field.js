@@ -15,7 +15,6 @@ export const createField = async (req, res) => {
       return catchRequest({
         err,
         res,
-        message: "Error whith image",
         internalCode: "1007",
       });
     const imagePath = process.cwd() + "/media/" + image.name;
@@ -44,12 +43,14 @@ export const createField = async (req, res) => {
 };
 
 export const getField = async (req, res) => {
-  const fieldId = req?.params?.id;
+  const fieldId = req?.params?.id.toString();
   try {
-    verifyUserField(req.user, fieldId);
-    const field = getFieldById(fieldId);
+    const userFields = req.user.fields.map((fieldId) => fieldId.toString());
+    verifyUserField(userFields, fieldId);
+    const field = await getFieldById(fieldId);
+    console.log(field);
     endRequest({
-      response: { field },
+      response: field,
       code: 201,
       res,
     });
