@@ -7,6 +7,7 @@ import {
   deleteUser,
   restorePassword,
   signIn,
+  updateUser,
 } from "./controllers/user.js";
 import { authenticate } from "./middlewares/auth.js";
 import Field from "./models/field.js";
@@ -21,6 +22,7 @@ export default (app) => {
   app.post("/sign_in", signIn);
   app.post("/restore_password", restorePassword);
   app.post("/change_password/:id", changePassword);
+  app.patch("/update_user", [authenticate], updateUser);
 
   // FIELD
   app.post("/field", [authenticate], createField);
