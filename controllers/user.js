@@ -120,3 +120,12 @@ export const updateUser = async (req, res) => {
     response: { user: removePassword(user._doc) },
   });
 };
+
+export const getUserFields = async (req, res) => {
+  const user = await User.findOneById({ _id: req.user._id }).populate("fields");
+  endRequest({
+    code: 204,
+    res,
+    response: user.fields.map(({ _id, image, name }) => ({ _id, image, name })),
+  });
+};

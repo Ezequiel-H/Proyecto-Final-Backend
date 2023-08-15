@@ -1,10 +1,16 @@
 import { getAllConstants } from "./controllers/constants.js";
-import { createField, getField, updateCrops } from "./controllers/field.js";
+import {
+  addHistory,
+  createField,
+  getField,
+  updateCrops,
+} from "./controllers/field.js";
 import { getAllSatelites, getOneSatelite } from "./controllers/satelite.js";
 import {
   changePassword,
   createUser,
   deleteUser,
+  getUserFields,
   restorePassword,
   signIn,
   updateUser,
@@ -24,11 +30,13 @@ export default (app) => {
   app.post("/restore_password", restorePassword);
   app.post("/change_password/:id", changePassword);
   app.patch("/update_user", [authenticate], updateUser);
+  app.get("/user/fields", [authenticate], getUserFields);
 
   // FIELD
   app.post("/field", [authenticate], createField);
   app.get("/field/:id", [authenticate], getField);
   app.patch("/field/:id", [authenticate], updateCrops);
+  app.patch("/field/history/:id", [authenticate], addHistory);
 
   // SATELITE
   app.get("/satelite/all", getAllSatelites);
