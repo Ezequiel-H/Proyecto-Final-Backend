@@ -101,3 +101,26 @@ export const updateCrops = async (req, res) => {
     });
   }
 };
+
+export const addHistory = async (req, res) => {
+  try {
+    const history = req.body;
+    const fieldId = req.params.id;
+    verifyUserField(req.user, fieldId);
+    const field = await getFieldById(fieldId);
+    await changeFieldAndSave(field, "history", history);
+    field = await getFieldById(fieldId);
+    endRequest({
+      response: { field },
+      code: 201,
+      res,
+    });
+  } catch (err) {
+    catchRequest({
+      err,
+      res,
+      message: "Error while updating history",
+      internalCode: "1007",
+    });
+  }
+};

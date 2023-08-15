@@ -10,6 +10,13 @@ const schema = new Schema(
     height: Number,
     width: Number,
     image: String,
+    history: {
+      years: [Number],
+      sown: [Number],
+      harvested: [Number],
+      production: [Number],
+      performance: [Number],
+    },
   },
   { timestamps: true }
 );
