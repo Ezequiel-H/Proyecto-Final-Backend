@@ -126,6 +126,6 @@ export const getUserFields = async (req, res) => {
   endRequest({
     code: 204,
     res,
-    response: user.fields.map(({ _id, image, name }) => ({ _id, image, name })),
+    response: user.fields,
   });
 };
