@@ -105,8 +105,8 @@ export const changePassword = async (req, res) => {
     { _id: req.params.id },
     { password: req.body.password }
   );
-  endRequest({
-    code: 204,
+  return endRequest({
+    code: 200,
     res,
     response: { user: removePassword(user._doc) },
   });
@@ -114,8 +114,8 @@ export const changePassword = async (req, res) => {
 
 export const updateUser = async (req, res) => {
   const user = await User.findOneAndUpdate({ _id: req.user.id }, req.body);
-  endRequest({
-    code: 204,
+  return endRequest({
+    code: 200,
     res,
     response: { user: removePassword(user._doc) },
   });
@@ -123,9 +123,10 @@ export const updateUser = async (req, res) => {
 
 export const getUserFields = async (req, res) => {
   const user = await User.findOne({ _id: req.user._id }).populate("fields");
-  endRequest({
-    code: 204,
+  console.log(user.fields);
+  return endRequest({
+    code: 200,
     res,
-    response: user.fields,
+    response: { fields: user.fields },
   });
 };
