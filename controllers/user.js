@@ -122,7 +122,7 @@ export const updateUser = async (req, res) => {
 };
 
 export const getUserFields = async (req, res) => {
-  const user = await User.findOneById({ _id: req.user._id }).populate("fields");
+  const user = await User.findOne({ _id: req.user._id }).populate("fields");
   endRequest({
     code: 204,
     res,
