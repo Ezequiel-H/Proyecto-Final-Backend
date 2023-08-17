@@ -106,8 +106,8 @@ export const addHistory = async (req, res) => {
   try {
     const history = req.body;
     const fieldId = req.params.id;
-    verifyUserField(req.user, fieldId);
-    const field = await getFieldById(fieldId);
+    verifyUserField(req.user.fields, fieldId);
+    var field = await getFieldById(fieldId);
     await changeFieldAndSave(field, "history", history);
     field = await getFieldById(fieldId);
     endRequest({
