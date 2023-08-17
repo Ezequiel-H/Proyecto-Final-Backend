@@ -20,8 +20,11 @@ import { authenticate } from "./middlewares/auth.js";
 import Field from "./models/field.js";
 
 export default (app) => {
-  app.get("/health", (_, res) => {
-    res.status(200).send("Healthy!");
+  app.get("/healthz", (_, res) => {
+    console.log(`Working at: ${new Date()}`);
+    res.send({
+      message: "OK",
+    });
   });
   // USER
   app.post("/user", createUser);
