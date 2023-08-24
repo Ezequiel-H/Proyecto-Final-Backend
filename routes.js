@@ -1,5 +1,6 @@
 import { getAllConstants } from "./controllers/constants.js";
 import {
+  addDiagnostic,
   addHistory,
   createField,
   getField,
@@ -10,6 +11,7 @@ import {
   changePassword,
   createUser,
   deleteUser,
+  getUser,
   getUserFields,
   restorePassword,
   signIn,
@@ -28,6 +30,7 @@ export default (app) => {
   });
   // USER
   app.post("/user", createUser);
+  app.get("/user", [authenticate], getUser);
   app.delete("/user/:id", deleteUser);
   app.post("/sign_in", signIn);
   app.post("/restore_password", restorePassword);
@@ -52,4 +55,7 @@ export default (app) => {
 
   // CONSTANTS
   app.get("/constants", getAllConstants);
+
+  // MODULO 4
+  app.post("/field/diagnostic/:id", addDiagnostic);
 };

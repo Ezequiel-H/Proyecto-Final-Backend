@@ -124,3 +124,26 @@ export const addHistory = async (req, res) => {
     });
   }
 };
+
+export const addDiagnostic = async (req, res) => {
+  try {
+    const { diagnostic, lat, lon } = req.body;
+    const fieldId = req.params.id;
+    var field = await getFieldById(fieldId);
+
+    await changeFieldAndSave(field, "history", history);
+    field = await getFieldById(fieldId);
+    endRequest({
+      response: { field },
+      code: 201,
+      res,
+    });
+  } catch (err) {
+    catchRequest({
+      err,
+      res,
+      message: "Error while updating history",
+      internalCode: "1007",
+    });
+  }
+};

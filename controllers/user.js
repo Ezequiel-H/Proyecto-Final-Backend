@@ -123,10 +123,18 @@ export const updateUser = async (req, res) => {
 
 export const getUserFields = async (req, res) => {
   const user = await User.findOne({ _id: req.user._id }).populate("fields");
-  console.log(user.fields);
   return endRequest({
     code: 200,
     res,
     response: { fields: user.fields },
+  });
+};
+
+export const getUser = async (req, res) => {
+  const user = await User.findOne({ _id: req.user._id });
+  return endRequest({
+    response: { user: removePassword(user._doc) },
+    code: 200,
+    res,
   });
 };
