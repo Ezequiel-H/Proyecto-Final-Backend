@@ -1,6 +1,6 @@
 import { getAllConstants } from "./controllers/constants.js";
+import { addDiagnosic } from "./controllers/diagnostic.js";
 import {
-  addDiagnostic,
   addHistory,
   createField,
   getField,
@@ -57,5 +57,5 @@ export default (app) => {
   app.get("/constants", getAllConstants);
 
   // MODULO 4
-  app.post("/field/diagnostic/:id", addDiagnostic);
+  app.post("/diagnostic/:id", addDiagnosic);
 };

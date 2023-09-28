@@ -48,7 +48,6 @@ export const getField = async (req, res) => {
     const userFields = req.user.fields.map((fieldId) => fieldId.toString());
     verifyUserField(userFields, fieldId);
     const field = await getFieldById(fieldId);
-    console.log(field);
     endRequest({
       response: field,
       code: 201,
@@ -108,29 +107,6 @@ export const addHistory = async (req, res) => {
     const fieldId = req.params.id;
     verifyUserField(req.user.fields, fieldId);
     var field = await getFieldById(fieldId);
-    await changeFieldAndSave(field, "history", history);
-    field = await getFieldById(fieldId);
-    endRequest({
-      response: { field },
-      code: 201,
-      res,
-    });
-  } catch (err) {
-    catchRequest({
-      err,
-      res,
-      message: "Error while updating history",
-      internalCode: "1007",
-    });
-  }
-};
-
-export const addDiagnostic = async (req, res) => {
-  try {
-    const { diagnostic, lat, lon } = req.body;
-    const fieldId = req.params.id;
-    var field = await getFieldById(fieldId);
-
     await changeFieldAndSave(field, "history", history);
     field = await getFieldById(fieldId);
     endRequest({

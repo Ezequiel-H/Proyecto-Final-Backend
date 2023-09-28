@@ -20,7 +20,6 @@ export const getFromSatelite = async (field) => {
     field.plots,
     plotsWithSateliteData
   );
-
   return changeFieldAndSave(field, "plots", plotsWithDiagnostic);
 };
 
